@@ -1,20 +1,15 @@
-//Al mostrar el modal
-$('#ModeloNoRegistrado').on('shown.bs.modal', function () {
-    //Hago focus en el botón
-    $('#myButton').trigger('focus')
-    //así al presionar enter, se redirecciona a la pgina que pongas en el link
-})
-
-function fetchPerson() {
+function fetchPokemon() {
     let xhr = new XMLHttpRequest();
     let pokemonID = document.getElementById('pokemonId').value;
-    let url = `https://swapi.py4e.com/api/people/${pokemonID}`;
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status == 200) {
                 let response = JSON.parse(this.responseText);
-                console.log(response);
+                console.log(pokemonID);
+                console.log(response.name);
+                displayPokemon(response)
             } else {
                 console.log('Error:', this.statusText);
                 mostrarError(this.statusText);
@@ -25,5 +20,14 @@ function fetchPerson() {
 }
 
 function displayPokemon() {
+    let pokemonInfo = document.getElementById("pokeInfo");
 
+    if (DataTransfer.response == "error") {
+        pokemonInfo.innerHTML = `<p>Error: ${data.error}</p>`;
+    }
+    else {
+        pokemonInfo.innerHTML = `
+        <p>${response.name}</p>
+        `;
+    }
 }
