@@ -1,0 +1,10 @@
+body{
+    background: linear-gradient(rgb(45, 136, 255), rgb(255, 255, 255));
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+#poke{
+    position: absolute;
+}
